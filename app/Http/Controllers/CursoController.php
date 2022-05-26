@@ -30,13 +30,18 @@ class CursoController extends Controller
             "categoria" => "required",
         ]); */
 
-        $curso = new Curso();
+        /* $curso = new Curso();
 
         $curso->name=$request->name;
         $curso->description=$request->description;
         $curso->categoria=$request->categoria;
 
-        $curso->save();
+        $curso->save(); */
+
+            // Asignacion masiva
+        /* la siguiente linea es la asignacion masiva, el metodo create espera un array con los campos a crear, y el metodo all() proporciona esto, al usarse en la varible $request se crea el array necesario con todos los datos de los campos de formularios.
+        NOTA: Es necesario definir la variable $fillable en el modelo */
+        $curso = Curso::create($request->all());
 
         return redirect()->route("cursos.show", $curso->id); // Con la funcion redirect se puede redireccionar al usuario a alguna pagina que se desee
 

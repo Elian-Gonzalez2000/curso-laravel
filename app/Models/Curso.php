@@ -22,6 +22,11 @@ class Curso extends Model
     use HasFactory;
 
     //protected $table = "users"; // Define la tabla a la que modificara datos (con esto ignora la convención).
+
+    /* Para usar la asignacion masiva es necesario definir la variable $fillable como protected y esta debe ser un array con los campos permitidos para que se haga la asignacion masiva, esto es por un tema de seguridad. */
+    protected $fillable = ["name", "description", "categoria"];
+
+    /* En lugar de usar fillable se puede usar la variable $guarded = [], que contendra todos los campos protegidos que el usuario no deberia ingresar y asi la asignacion masiva asignara todos los campos que no esten definido en $guarded, al contrario de $fillable que en su array se deben definir los campos que tomara la asignacion masiva */
 }
 
 // Adquiriendo informacion con eloquent

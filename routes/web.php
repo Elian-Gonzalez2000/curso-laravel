@@ -24,7 +24,7 @@ Route::get('/', function () {
 /* Las rutas en Laravel se leen de arriba hacia abajo, asi que el orden en el que se colocan las rutas importa (similar a react) */
 // Para crear controladores se usa el comando php artisan make:controller NombreController
 
-Route::get('/', HomeController::class)->name("cursos.home");
+Route::get('/', HomeController::class)->name("home");
 //Route::get('/', "HomeController"): Esta es la manera de llamar a los controladores en laravel 7. El metodo name le agrega un nombre a la ruta, con lo que se evita usar la navegacion normal
 
 //Route::get("/cursos", [CursoController::class, "index"])->name("cursos.index");
@@ -48,3 +48,5 @@ Route::get('/', HomeController::class)->name("cursos.home");
 Route::resource("cursos", CursoController::class)->parameters(["cursos" =>"cursos"])->names("cursos");
 // El metodo names establece los nombres que se quieran especificar para que trabaje la aplicacion, pero en el cliente se mostrara en la url lo que se haya pasado como primer parametro a resource.
 // El metodo parameters recibe un array y establece que palabra es la que se usara para las variables en las funciones controladoras
+
+Route::view('nosotros', 'nosotros')->name('nosotros');

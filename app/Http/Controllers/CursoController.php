@@ -78,4 +78,11 @@ class CursoController extends Controller
         $curso->save();
         return redirect()->route("cursos.show", $curso->id);
     }
+
+    public function destroy(Curso $curso){
+        // Delete es el metodo que permite eliminar un registro
+        $curso->delete();
+
+        return redirect()->route("cursos.index");
+    }
 }

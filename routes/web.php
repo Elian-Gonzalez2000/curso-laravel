@@ -42,3 +42,5 @@ Route::get("cursos/{id}/edit", [CursoController::class, "edit"])->name("cursos.e
 
 Route::put("cursos/{curso}", [CursoController::class, "update"])->name("cursos.update");
 
+Route::delete("cursos/{curso}", [CursoController::class, "destroy"])->name('cursos.destroy');
+

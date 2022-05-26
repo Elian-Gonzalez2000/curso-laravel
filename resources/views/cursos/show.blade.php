@@ -9,6 +9,11 @@
     <a href="{{route('cursos.edit', $curso)}}">Editar cursos</a>
     <p>{{$curso->description}}</p>
     <p>{{$curso->categoria}}</p>
+    <form action="{{route('cursos.destroy', $curso)}}" method="POST">
+        @csrf
+        @method("delete")
+        <button type="submit">Eliminar</button>
+    </form>
     <!-- Cuando se desea concatenar un echo dentro del codigo html en lugar de usar la etiqueta de php, blade ofrece otra directiva que es la que se muestra en el h1 con dos corchetes y la varible -->
 @endsection
 <!-- Los @ section son para definir un contenido dependiendo del nombre definido en el yield de la plantilla, la sintaxis para un unico contenido es "@ section("referenciaYield", "contenido")".

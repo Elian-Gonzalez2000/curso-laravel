@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 
 use App\Http\Requests\StoreCurso; // Importo el archivo con las validaciones
+use Illuminate\Support\Str;
 
 /* Las funciones dentro de lo controladores no deberian retornar codigo php plano, sino que se deberia llamar a un archivo con codigo HTML, en este caso eso archivos se llaman "vistas".
 Estas vistas deben alojarse en la carpeta resource/views/vista.php.
@@ -47,18 +48,18 @@ class CursoController extends Controller
 
     }// Para la peticion del formulario store
 
-    public function show($id){
+    public function show($slug){
         // compact("curso") = ["curso" => $curso]
-        $curso = Curso::find($id);
+        $curso = Curso::where("slug", $slug)->get();
 
         return view("cursos.show", ["curso" => $curso]); // Se utilizan los arrays con nombre para rescatar las variable que se le pasan por parametro a la funcion y poder usarlas en la vista.
     } // Para mostrar un elemento particular se usa show
     // Todos estos nombres son convenciones
 
-    public function edit ($id){
+    public function edit ($slug){
         // Con la expresion Curso $id laravel entiende que la variable $id es una instancia de la clase Curso
-        $curso = Curso::find($id);
-        return view("cursos.edit", compact("curso"));
+        $curso = Curso::where("slug", $slug)->get();
+        return view("cursos.edit", ["curso" => $curso[0]]);
     }
 
     public function update(Request $request, $id){
@@ -69,14 +70,14 @@ class CursoController extends Controller
             "description"=> "required",
             "categoria" => "required",
         ]);
-
-        $curso = Curso::find($id);
-        $curso->name = $request->name;
-        $curso->description = $request->description;
-        $curso->categoria = $request->categoria;
-
+        $curso = Curso::where("slug", $id)->get();
+        $curso[0]->name = $request->name;
+        $curso[0]->slug = Str::slug($request->name, "-");
+        $curso[0]->description = $request->description;
+        $curso[0]->categoria = $request->categoria;
+        $curso = $curso[0];
         $curso->save();
-        return redirect()->route("cursos.show", $curso->id);
+        return redirect()->route("cursos.show", $curso->slug);
     }
 
     public function destroy(Curso $curso){

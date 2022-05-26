@@ -26,7 +26,8 @@ class Cursos extends Migration
     {
         Schema::create("cursos", function(Blueprint $table){
             $table->id(); // Crea un dato tipo id incremental dependiendo de lacantidad de registro
-            $table->string("name"); // string=varchar(255), como parametro recibe un string que sera el nombre de la columna
+            $table->string("name"); // string=varchar(255), como parametro recibe un string que sera el nombre de la columna.
+            $table->string("slug");
             $table->text("description"); //text acepta cualquier cantidad de caracteres, como parametro recibe un string que sera el nombre de la columna
             $table->text("categoria");
             $table->timestamps(); // create_at update_at

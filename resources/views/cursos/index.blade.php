@@ -10,9 +10,10 @@
         <!-- La siguiente directris permite ejecutar un "@ foreach($array as $elements)" -->
         @foreach ($cursos as $curso)
             <li>
-                <a href="{{route('cursos.show', $curso->id)}}">
+                <a href="{{route('cursos.show', $curso)}}">
                     {{$curso->name}}
-                </a>
+                </a><br>
+
             </li>
         @endforeach
     </ul>

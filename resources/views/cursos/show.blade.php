@@ -3,13 +3,13 @@
 @section("title", "Curso " . $curso )
 
 @section("content")
-    <h1>Pagina cursos {{$curso->name}}</h1>
+    <h1>Pagina cursos {{$curso[0]->name}}</h1>
     <a href="{{route('cursos.index')}}">Volver a cursos</a>
     <br>
-    <a href="{{route('cursos.edit', $curso)}}">Editar cursos</a>
-    <p>{{$curso->description}}</p>
-    <p>{{$curso->categoria}}</p>
-    <form action="{{route('cursos.destroy', $curso)}}" method="POST">
+    <a href="{{route('cursos.edit', $curso[0])}}">Editar cursos</a>
+    <p>{{$curso[0]->description}}</p>
+    <p>{{$curso[0]->categoria}}</p>
+    <form action="{{route('cursos.destroy', $curso[0])}}" method="POST">
         @csrf
         @method("delete")
         <button type="submit">Eliminar</button>

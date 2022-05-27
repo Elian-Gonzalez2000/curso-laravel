@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\ContactanosController;
 
-use App\Mail\ContactanosMailable;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,11 +53,7 @@ Route::resource("cursos", CursoController::class)->parameters(["cursos" =>"curso
 
 Route::view('nosotros', 'nosotros')->name('nosotros');
 
-Route::get("contactanos", function (){
-    // Entrando a esta ruta se podran enviar correos electronidos, pero primero se necesita configurar laravel colocando los datos correctos en el .env y crear un archivo mail con el comando: php artisan make:mail ContactanosMailable
-    $correos = new ContactanosMailable;
+// Entrando a esta ruta se podran enviar correos electronidos, pero primero se necesita configurar laravel colocando los datos correctos en el .env y crear un archivo mail con el comando: php artisan make:mail ContactanosMailable
+Route::get("contactanos", [ContactanosController::class, "index"])->name("contactanos.index");
 
-    Mail::to("eliancarlogm@gmail.com")->send($correos);
-
-    return "mensaje enviado";
-})->name("contactanos.index");
+Route::post("contactanos", [ContactanosController::class, "store"])->name("contactanos.store");

@@ -12,15 +12,19 @@ class ContactanosMailable extends Mailable
     use Queueable, SerializesModels;
 
     public $subject = "Informacion de contacto";
+
+    public $contacto;
+
     // con la variable $subject se define el encabezado del mail o asunto
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($contacto)
     {
-        //
+        // Se puede pasar variables a constructor de la clase principalmente para añadir contenido al email. esto se logra desde el controller
+        $this->contacto = $contacto;
     }
 
     /**

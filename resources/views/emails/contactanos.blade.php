@@ -7,8 +7,13 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Este es el mensaje enviado por email -->
     <h1>Practicando enviar un correo</h1>
     <p>Mandado por laravle</p>
+
+    <p><strong>Nombre: </strong>{{$contacto["name"]}}</p>
+    <p><strong>Correo: </strong>{{$contacto["correo"]}}</p>
+    <p><strong>Mensaje: <br></strong>{{$contacto["mensaje"]}}</p>
 
 </body>
 </html>

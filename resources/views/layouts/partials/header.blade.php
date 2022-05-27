@@ -14,6 +14,9 @@
                  <li><a href="{{route('nosotros')}}" class="{{request()->routeIs('nosotros') ? 'active' : ''}}">Nosotros</a>
                  <!-- @ dump (request()->routeIs('nosotros')) -->
                 </li>
+                 <li><a href="{{route('Contactanos.index')}}" class="{{request()->routeIs('Contactanos') ? 'active' : ''}}">Contactanos</a>
+                 <!-- @ dump (request()->routeIs('nosotros')) -->
+                </li>
              </ul>
          </nav>
      </header>

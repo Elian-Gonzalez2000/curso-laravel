@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
 
+use App\Mail\ContactanosMailable;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,3 +53,12 @@ Route::resource("cursos", CursoController::class)->parameters(["cursos" =>"curso
 // El metodo parameters recibe un array y establece que palabra es la que se usara para las variables en las funciones controladoras
 
 Route::view('nosotros', 'nosotros')->name('nosotros');
+
+Route::get("contactanos", function (){
+    // Entrando a esta ruta se podran enviar correos electronidos, pero primero se necesita configurar laravel colocando los datos correctos en el .env y crear un archivo mail con el comando: php artisan make:mail ContactanosMailable
+    $correos = new ContactanosMailable;
+
+    Mail::to("eliancarlogm@gmail.com")->send($correos);
+
+    return "mensaje enviado";
+})->name("contactanos.index");
